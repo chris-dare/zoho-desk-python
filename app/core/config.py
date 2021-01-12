@@ -26,6 +26,14 @@ class Settings(BaseSettings):
     # BACKEND_CORS_ORIGINS is a JSON-formatted list of origins
     # e.g: '["http://localhost", "http://localhost:4200", "http://localhost:3000",]'
     BACKEND_CORS_ORIGINS: List[AnyHttpUrl] = os.environ["BACKEND_CORS_ORIGINS"]
+    ZOHO_REDIRECT_URI = os.environ["ZOHO_REDIRECT_URI"]
+    ZOHO_CLIENT_ID = os.environ["ZOHO_CLIENT_ID"]
+    ZOHO_CLIENT_SECRET = os.environ["ZOHO_CLIENT_SECRET"]
+    ZOHO_AUTHORIZATION_CODE = os.environ["ZOHO_AUTHORIZATION_CODE"]
+    # ZOHO_OAUTH_SCOPES = os.environ["ZOHO_OAUTH_SCOPES"]
+    ZOHO_OAUTH_SCOPES = ["Desk.tickets.ALL", "Desk.settings.ALL", "Desk.basic.READ", "Desk.basic.CREATE"]
+    ZOHO_ACCESS_TOKEN = os.environ["ZOHO_ACCESS_TOKEN"]
+    ZOHO_REFRESH_TOKEN = os.environ["ZOHO_REFRESH_TOKEN"]
 
     @validator("BACKEND_CORS_ORIGINS", pre=True)
     def assemble_cors_origins(cls, v: Union[str, List[str]]) -> Union[List[str], str]:
