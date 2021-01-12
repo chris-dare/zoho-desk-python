@@ -1,10 +1,10 @@
-from typing import List
+from typing import List, Optional
 from pydantic import BaseModel
 
 
 class ZohoApp(BaseModel):
     scope: List[str]
-    expiry_time: int = None
+    expiry_time: Optional[int] = None
     client_id: str
     client_secret: str
     code: str
