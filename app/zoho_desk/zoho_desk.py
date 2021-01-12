@@ -15,8 +15,10 @@ class ZohoDesk:
                 "base_url": "https://desk.zoho.com/api/v1",
             }
         self.app = app
-        if not self.app.access_token or not self.app.refresh_token:
+        if not self.app.access_token and not self.app.refresh_token:
             self.get_oauth_tokens()
+        elif not self.app.refresh_token:
+            self.refresh_oauth_tokens()
 
     def get_oauth_tokens(self) -> dict:
         payload = {
