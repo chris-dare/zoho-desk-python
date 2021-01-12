@@ -3,11 +3,11 @@ import logging
 
 import requests
 
-from app.schemas import ZohoSelfClient
+from app.schemas import ZohoSelfClientApp
 
 
 class ZohoDesk:
-    def __init__(self, app: ZohoSelfClient, urls: dict = None):
+    def __init__(self, app: ZohoSelfClientApp, urls: dict = None):
         self.urls = urls
         if not self.urls:
             self.urls = {
