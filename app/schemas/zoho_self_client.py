@@ -2,7 +2,7 @@ from typing import List
 from pydantic import BaseModel
 
 
-class ZohoSelfClient(BaseModel):
+class ZohoApp(BaseModel):
     scope: List[str]
     expiry_time: int = None
     client_id: str
@@ -15,3 +15,7 @@ class ZohoSelfClient(BaseModel):
 
     def get_authorization_header(self) -> str:
         return f"Zoho-oauthtoken {self.access_token}"
+
+
+class ZohoSelfClientApp(ZohoApp):
+    pass
