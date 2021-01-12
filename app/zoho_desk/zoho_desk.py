@@ -125,7 +125,7 @@ class ZohoDesk:
             f'{self.urls["base_url"]}/tickets', headers=headers, params=params
         )
         if response.status_code == 200:
-            data = response.json()
+            data = response.json()["data"]
         else:
             data = {"error": True}
         return data
