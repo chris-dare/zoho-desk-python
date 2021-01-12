@@ -1,0 +1,19 @@
+.env
+.vscode
+.mypy_cache
+.ignore*
+.ipynb_checkpoints/*
+.coverage
+__pycache__
+app.egg-info
+docker-stack.yml
+data
+htmlcov
+import
+logs
+plugins
+
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml

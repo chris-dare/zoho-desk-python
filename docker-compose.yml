@@ -1,0 +1,15 @@
+version: "3.3"
+
+services:
+  web:
+    build: ./
+    command: uvicorn app.main:app --reload --workers 1 --host 0.0.0.0 --port 80
+    volumes:
+      - ./:/app
+    ports:
+      - 80:80
+    environment:
+      - SERVER_HOST=${SERVER_HOST?Variable not set}
+      - SERVER_NAME=${SERVER_NAME?Variable not set}
+      - PROJECT_NAME=${PROJECT_NAME?Variable not set}
+      - BACKEND_CORS_ORIGINS=${BACKEND_CORS_ORIGINS?Variable not set}
