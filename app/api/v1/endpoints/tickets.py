@@ -11,4 +11,4 @@ router = APIRouter()
 @router.get("/", response_model=List[schemas.ZohoTicket])
 def get_tickets(params: Optional[dict]= {}, zoho_desk: ZohoDesk = Depends(deps.get_zoho_desk_api)) -> List[schemas.ZohoTicket]:
     tickets = zoho_desk.get_tickets()
-    return tickets
+    return [schemas.ZohoTicket(**ticket) for ticket in tickets] 
