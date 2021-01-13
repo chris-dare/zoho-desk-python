@@ -30,15 +30,16 @@ class Settings(BaseSettings):
     ZOHO_CLIENT_ID = os.environ["ZOHO_CLIENT_ID"]
     ZOHO_CLIENT_SECRET = os.environ["ZOHO_CLIENT_SECRET"]
     ZOHO_AUTHORIZATION_CODE = os.environ["ZOHO_AUTHORIZATION_CODE"]
-    # ZOHO_OAUTH_SCOPES = os.environ["ZOHO_OAUTH_SCOPES"]
-    ZOHO_OAUTH_SCOPES = ["Desk.tickets.ALL", "Desk.settings.ALL", "Desk.basic.READ", "Desk.basic.CREATE"]
+    # ZOHO_OAUTH_SCOPES:str = os.environ["ZOHO_OAUTH_SCOPES"]
+    ZOHO_OAUTH_SCOPES:str = "Desk.tickets.ALL,Desk.settings.ALL,Desk.basic.READ,Desk.basic.CREATE"
     ZOHO_ACCESS_TOKEN = os.environ["ZOHO_ACCESS_TOKEN"]
     ZOHO_REFRESH_TOKEN = os.environ["ZOHO_REFRESH_TOKEN"]
+    ZOHO_DEFAULT_DEPARTMENT = os.environ["ZOHO_DEFAULT_DEPARTMENT"]
 
     @validator("BACKEND_CORS_ORIGINS", pre=True)
-    def assemble_cors_origins(cls, v: Union[str, List[str]]) -> Union[List[str], str]:
+    def assemble_cors_origins(cls, v: Union[str, List[AnyHttpUrl]]) -> Union[List[AnyHttpUrl], str]:
         if isinstance(v, str) and not v.startswith("["):
-            return [i.strip() for i in v.split(",")]
+            return [AnyHttpUrl(i.strip()) for i in v.split(",")]
         elif isinstance(v, (list, str)):
             return v
         raise ValueError(v)

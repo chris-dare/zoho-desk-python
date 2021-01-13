@@ -24,9 +24,33 @@ The package structure is yet to be finalized. Check back in a week or contact [C
 to learn more.
 
 ## Launching: Running the service
-Run the bash script `startup.sh`
+### Running locally
+Make sure you have [docker installed](https://docs.docker.com/get-docker/)
+Run the bash script `startup.sh` if on linux:
 ```bash
-bash startup.sh
+$ bash startup.sh
 ```
-This service runs on host port 80. If you'd like to change the port, bind a different port to the 
-docker app in `./docker-compose.yml`
+Or use docker directly:
+```console
+docker-compose build
+docker-compose up -d
+```
+
+This service runs on host port 80. If you'd like to change the port, 
+bind a different port to the docker app in `./docker-compose.yml`
+
+### Development
+A development instance of this server is currently available on AWS at the time of this writing.
+
+Link: http://serenity-customer-support-dev.us-east-1.elasticbeanstalk.com/
+
+
+If you need to deploy a new development instance, consider using heroku or AWS. 
+Here are instructions to deploy to EB2:
+```console
+eb init
+eb create
+eb setenv env_key=env_value env_key2=env_value2 and=so_on
+eb deploy
+```
+Refer to `./env.sample` for a list of all required environment variables

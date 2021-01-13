@@ -13,3 +13,11 @@ services:
       - SERVER_NAME=${SERVER_NAME?Variable not set}
       - PROJECT_NAME=${PROJECT_NAME?Variable not set}
       - BACKEND_CORS_ORIGINS=${BACKEND_CORS_ORIGINS?Variable not set}
+      - ZOHO_REDIRECT_URI=${ZOHO_REDIRECT_URI?Variable not set}
+      - ZOHO_CLIENT_ID=${ZOHO_CLIENT_ID?Variable not set}
+      - ZOHO_CLIENT_SECRET=${ZOHO_CLIENT_SECRET?Variable not set}
+      - ZOHO_ACCESS_TOKEN=${ZOHO_ACCESS_TOKEN?Variable not set}
+      - ZOHO_REFRESH_TOKEN=${ZOHO_REFRESH_TOKEN?Variable not set}
+      - ZOHO_AUTHORIZATION_CODE=${ZOHO_AUTHORIZATION_CODE?Variable not set}
+      - ZOHO_OAUTH_SCOPES=${ZOHO_OAUTH_SCOPES?Variable not set}
+      - ZOHO_DEPARTMENTS=${ZOHO_DEPARTMENTS?Variable not set}
