@@ -1,7 +1,7 @@
 # Serenity Customer Support Service
 
 Todo: Add build status
-[![Build Status](https://travis-ci.com/dexios1/serenity-service-desk.svg?branch=development)]
+[![Build Status](https://travis-ci.com/dexios1/serenity-service-desk.svg?branch=master)]
 (https://travis-ci.com/dexios1/serenity)
 
 ## About
