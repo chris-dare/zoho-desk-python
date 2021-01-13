@@ -3,7 +3,7 @@ from pydantic import BaseModel
 
 
 class ZohoApp(BaseModel):
-    scope: List[str]
+    scope: str
     expiry_time: Optional[int] = None
     client_id: str
     client_secret: str
