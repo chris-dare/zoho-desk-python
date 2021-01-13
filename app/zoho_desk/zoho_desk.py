@@ -78,6 +78,7 @@ class ZohoDesk:
         in self.app.scope
         """
         # TODO: Check that current access token is valid. Else refresh it
+        self.refresh_oauth_tokens() #TODO: Optimize me
         authorization_header = {
             "Authorization": f"Zoho-oauthtoken {self.app.access_token}"
         }
