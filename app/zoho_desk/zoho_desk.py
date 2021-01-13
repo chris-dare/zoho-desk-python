@@ -4,6 +4,7 @@ import logging
 import requests
 
 from app.schemas import ZohoSelfClientApp
+from app.schemas import Ticket, ZohoTicket
 
 
 class ZohoDesk:
@@ -128,21 +129,24 @@ class ZohoDesk:
         if response.status_code == 200:
             data = response.json()["data"]
         else:
+            logging.error(f"Error retrieving tickets. Status code: {response.status_code}")
             data = {"error": True}
         return data
 
     def create_ticket(
         self,
-        payload: dict,
+        ticket: Ticket,
     ) -> dict:
         headers = self._get_authorization_header()
         response = requests.post(
             f'{self.urls["base_url"]}/tickets',
             headers=headers,
-            data=json.dumps(payload),
+            data=ticket.non_empty_json(),
         )
         if response.status_code == 201 or response.status_code == 200:
-            data = response.json()
+            data = ZohoTicket(**response.json())
         else:
+            logging.error(f"Error creating ticket: '{ticket.subject}'")
+            logging.warning(response.json())
             data = {"error": True}
         return data
