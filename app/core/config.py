@@ -34,6 +34,7 @@ class Settings(BaseSettings):
     ZOHO_OAUTH_SCOPES:str = "Desk.tickets.ALL,Desk.settings.ALL,Desk.basic.READ,Desk.basic.CREATE"
     ZOHO_ACCESS_TOKEN = os.environ["ZOHO_ACCESS_TOKEN"]
     ZOHO_REFRESH_TOKEN = os.environ["ZOHO_REFRESH_TOKEN"]
+    ZOHO_DEFAULT_DEPARTMENT = os.environ["ZOHO_DEFAULT_DEPARTMENT"]
 
     @validator("BACKEND_CORS_ORIGINS", pre=True)
     def assemble_cors_origins(cls, v: Union[str, List[str]]) -> Union[List[str], str]:

@@ -4,6 +4,8 @@ from datetime import datetime, timezone, timedelta
 from typing import List, Optional, Union
 from pydantic import BaseModel, HttpUrl, EmailStr
 
+from app.core.config import settings
+
 
 class TicketSLA(BaseModel):
     response: timedelta = timedelta(hours=1)
@@ -15,7 +17,7 @@ ticket_sla = TicketSLA()
 class Ticket(BaseModel):
 #     id: int
     subject: str
-    departmentId: Optional[int]
+    departmentId: Optional[int] = settings.ZOHO_DEFAULT_DEPARTMENT
     contact: Optional[dict]
     email: Optional[EmailStr]
     phone: Optional[str]
