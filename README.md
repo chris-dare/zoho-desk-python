@@ -1,6 +1,6 @@
 # Serenity Customer Support Service
 
-[![Build Status](https://travis-ci.com/dexios1/serenity-service-desk.svg?branch=master)](https://travis-ci.com/dexios1/serenity)
+[![Build Status](https://travis-ci.com/dexios1/serenity-service-desk.svg?branch=development)](https://travis-ci.com/dexios1/serenity)
 
 ## About
 Microservice bridging Serenity's support desk on Zoho with our decentralized apps.
