@@ -2,8 +2,17 @@ from datetime import datetime
 from typing import List, Optional
 from pydantic import BaseModel, HttpUrl
 
+from datetime import datetime, timezone, timedelta
+from typing import List, Optional, Union
+from pydantic import BaseModel, HttpUrl, EmailStr
 
-class ZohoTicket(BaseModel):
+
+class TicketSLA(BaseModel):
+    response: timedelta = timedelta(hours=1)
+    resolution: timedelta = timedelta(hours=7)
+    priority: str = "HIGH"
+
+ticket_sla = TicketSLA()
 #     id: int
     subject: str
     departmentId: Optional[int]
