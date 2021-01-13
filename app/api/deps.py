@@ -19,7 +19,9 @@ def get_zoho_desk_api() -> ZohoDesk:
     }
     zoho_self_client_app_dict = {
         "code": settings.ZOHO_AUTHORIZATION_CODE,
-        "scope": settings.ZOHO_OAUTH_SCOPES,
+        # "scope": settings.ZOHO_OAUTH_SCOPES,
+        #TODO: implement above scope assignment instead of below
+        "scope": "Desk.tickets.ALL,Desk.settings.ALL,Desk.basic.READ,Desk.basic.CREATE",
         "expiry_time": None,
         "client_id": settings.ZOHO_CLIENT_ID,
         "client_secret": settings.ZOHO_CLIENT_SECRET,
