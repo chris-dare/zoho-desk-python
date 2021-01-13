@@ -1,6 +1,4 @@
-from datetime import datetime
-from typing import List, Optional
-from pydantic import BaseModel, HttpUrl
+import json 
 
 from datetime import datetime, timezone, timedelta
 from typing import List, Optional, Union
@@ -13,14 +11,13 @@ class TicketSLA(BaseModel):
     priority: str = "HIGH"
 
 ticket_sla = TicketSLA()
+
+class Ticket(BaseModel):
 #     id: int
     subject: str
     departmentId: Optional[int]
-    contactId: Optional[str]
     contact: Optional[dict]
-    productId: Optional[str]
-    uploads: Optional[List]
-    email: Optional[str]
+    email: Optional[EmailStr]
     phone: Optional[str]
     description: Optional[str]
     status: Optional[str]
@@ -28,13 +25,22 @@ ticket_sla = TicketSLA()
     category: Optional[str]
     subCategory: Optional[str]
     resolution: Optional[str]
-    dueDate: Optional[datetime]
     priority: Optional[str]
     language: Optional[str]
-    responseDueDate: Optional[datetime]
     channel: Optional[str]
     classification: Optional[str] # Type of ticket. Values supported are Problem, Request, Question, and Others
     cf: Optional[dict] # Custom fields in the ticket
     webUrl: Optional[HttpUrl]
     teamId: Optional[int]
     secondaryContacts: Optional[List]
+
+    def non_empty_json(self):
+        non_empty_fields = {k: v for k, v in self.dict().items() if v is not None}
+        return json.dumps(non_empty_fields)
+class ZohoTicket(Ticket):
+    id: int
+    contactId: Optional[str]
+    productId: Optional[str]
+    uploads: Optional[List]
+    dueDate: Optional[str]
+    responseDueDate: Optional[str]
