@@ -1,0 +1,26 @@
+test-job2:
+  stage: test
+  script:
+    - echo "This stage of CI should run written tests"
+    # it's to run tests from specific folders rather just ran pytest
+    # that's very helpful so that tests can be written ahead of the development of a future release.
+
+deploy-staging:
+  stage: deploy
+  script:
+    - # setup aws & eb2 cli
+    - pip install awscli
+    - apt-get install git build-essential zlib1g-dev libssl-dev libncurses-dev libffi-dev libsqlite3-dev libreadline-dev libbz2-dev
+    - build-essential zlib1g-dev libssl-dev libncurses-dev libffi-dev libsqlite3-dev libreadline-dev libbz2-dev
+    - git clone https://github.com/aws/aws-elastic-beanstalk-cli-setup.git
+    - ./aws-elastic-beanstalk-cli-setup/scripts/bundled_installer
+    - echo "Deployment $CI_COMMIT_BRANCH branch."
+    - # conditionally useless env var assignments but keep here for now
+    - # set env vars in gitlab
+    - export AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID
+    - export AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY
+    - export AWS_DEFAULT_REGION=$AWS_DEFAULT_REGION
+    - # init config and deploy to EB2
+    - eb init $AWS_EB2_DEPLOYMENT_ENVIRONMENT --region $AWS_DEFAULT_REGION --platform_name $AWS_EB2_DEPLOYMENT_ENVIRONMENT_PLATFORM --keyname $AWS_EB2_DEPLOYMENT_ENVIRONMENT_EC2_KEYNAME
+    - # also consider using env vars in the Eb2 config then commit eb2 yml config without sensitive keys since they'll be in the gitlab env vars
+    - eb deploy $AWS_EB2_DEPLOYMENT_ENVIRONMENT --region $AWS_DEFAULT_REGION
