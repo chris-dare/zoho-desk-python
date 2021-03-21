@@ -7,6 +7,7 @@ test-job2:
 
 deploy-staging:
   stage: deploy
+  only: develop
   script:
     - # setup aws & eb2 cli
     - pip install awscli
